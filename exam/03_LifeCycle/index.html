@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Vue Instance Lifecycle</title>
+    </head>
+    <body>
+        <div id="app">
+            {{message}} <!-- Hello Vue.js! -->
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+<script>
+    new Vue({ // vue 생성
+        el: '#app' //element 지정 >> 미리 정의되어 있는거! 
+        , data: {
+            message: 'Hello Vue.js!'
+        } , beforeCreate: function(){
+            console.log("제일 먼저 실행됩니다. (beforeCreate)");
+        }, created: function(){
+            console.log("data 속성과 method가 정의되었습니다. (created)");
+        }, mounted: function(){
+            console.log("화면요소에 인스턴스 부착되었습니다. (mounted)");
+            this.message = 'Hello Vue'
+        }, updated: function(){
+            console.log("가상돔으로 화면을 다시 그렸습니다. (updated)");
+        }
+    })
+</script>
