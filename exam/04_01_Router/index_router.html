@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vuew Router Sample</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <h1>뷰 라우터 예제</h1>
+            <p>
+                <!--
+                    URL 값 변경
+                    https:// ...link.index_router.html#/main
+                    <a>로 표시되며 클릭하면 to에 지정된 링크로 이동 
+                -->
+                <router-link to="/main">Main 컴포넌트로 이동</router-link>
+                <router-link to="/login">Login 컴포넌트로 이동</router-link>
+            </p>
+
+            <!--URL 값에 따라 갱신되는 화면 영역 -->
+            <router-view></router-view>
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+<script>
+    //컴포넌트 정의 
+    var Main = {template: "<div> main </div>"};
+    var Login = {template: "<div> Login </div>"};
+
+    //각 url에 맞춰서 표시할 컴포넌트 지정 
+    var routes = [
+        {path: "/main", component: Main}
+        , {path: "/login", component: Login}
+    ];
+
+    //뷰 라우터 정의 
+    var router = new VueRouter({
+        //mode: 'history', //url의 해시 값(#)을 없애는 법 => 지금은 바로 /main으로 이동되어버림 
+        routes
+    });
+
+    //뷰 인스턴스에 라우터 추가 
+    var app = new Vue({
+        router
+    }).$mount("#app"); //el과 동일. 인스턴스를 화면에 붙임. 강제로 인스턴스를 화면에 붙일 수 있음. 
+</script>
