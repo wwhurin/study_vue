@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vuew Components event bus</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <child-component></child-component>
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    var eventBus = new Vue();
+
+    Vue.component("child-component", {
+        template: "<div> 하위 컴포넌트 영역입니다. <button v-on:click='showLog'>show</button></div>"
+        , methods: {
+            //클릭하면 showLog 실행
+            showLog: function(){
+                //eventBus에 있는 triggerEventBus 실행 
+                //인자 전달 
+                eventBus.$emit("triggerEventBus", 100);
+            }
+        }
+    });
+
+    var app = new Vue({
+        el: "#app"
+        , created: function(){
+            //eventBus.$on()으로 이벤트 받음. 
+            eventBus.$on("triggerEventBus", function(value){
+                console.log("이벤트를 전달받았음. 전달받은 값 : ", value);
+            });
+        }
+    });
+</script>

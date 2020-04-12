@@ -9,8 +9,8 @@
     <body>
         <div id="app">
             <!--
-                v-bind: data 할당
-                v-bind:props속성이름="상위 컴포넌트의 데이터 속성"
+                child-component : <button> 할당
+                show-log라는 이벤트에 printText 할당
             -->
             <child-component v-on:show-log="printText"></child-component>
         </div>
@@ -23,6 +23,7 @@
         template: "<button v-on:click='showLog'>show</button>"
         , methods: {
             showLog: function(){
+                //show-log라는 이벤트 발생 
                 this.$emit('show-log');
             }
         }
