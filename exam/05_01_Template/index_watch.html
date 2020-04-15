@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue watch</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <!--
+                v-model : 화면의 데이터를 스크립트단의 특정 데이터와 일치시켜줌
+            -->
+            <input v-model="message">
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    /*
+       watch는 데이터 변화 감지해서 특정 로직 실행시킴. 
+       computed는 내장 api를 활용한 간단한 연산 정도에 적합.
+       watch는 데이터 호출 등 시간 많이 걸리는 비동기에 적합. 
+    */
+    new Vue({
+        el: "#app"
+        , data: {
+            message: "Hello Vue.js!"
+        }, watch: {
+            message: function(data){
+                console.log("message의 값이 바뀝니다 : " + data);
+            }
+        }
+    });
+</script>

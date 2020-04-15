@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue computed and methods</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <p>{{ message }}</p>
+            <button v-on:click="reverseMsg">문자열 역순</button>
+
+            <br/><br/>
+            {{ reversedMessage }} 
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    /*
+        computed는 대상 데이터의 값이 변경되면 자동적으로 수행 (능동적으로 갱신) 
+            => 변경되지 않는 한 이전 계산값 갖고 있음. 
+        methods는 호출할때만 해당 로직 수행 (수동적으로 갱신)
+
+        따라서, 복잡한 연산을 반복 수행하면 => computed 
+    */
+    new Vue({
+        el: "#app"
+        , data: {
+            message: "Hello Vue.js!"
+        }, methods: {
+            reverseMsg: function(){
+                this.message = this.message.split("").reverse().join('');
+                return this.message;
+            }
+        }, computed: { //데이터 속성을 자동으로 계산해 주는 속성 
+            reversedMessage: function(){ // {{reversedMessage}}에 표현되기 전에 연산을 수행하는 함수 
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+</script>
