@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue binding</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <!--
+                {{ 안에 js 내장 함수 써도 됨 }}
+            -->
+            <p>{{ message}}</p>
+            <p>{{ message + "!!!" }}</p>
+            <p>{{ message.split('').reverse().join('') }}</p> <!-- X, 복잡한 연산은 인스턴스 안에서 수행 -->
+            {{ reversedMessage }} <!-- O, 스크립트에서 computed 속성으로 계산한 후 최종 값만 표현 -->
+
+            <!-- 
+            오류나는 구문이므로 주석 처리!
+
+            {{ var a = 10; }} X, 선언문은 사용 불가능 
+            {{ if (true) {return 100} }}}  X, 분기 구문은 사용 불가능 
+            
+            -->
+            {{ true ? 100 : 0 }} <!-- O, 삼항 연산자로 표현 가능 -->
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app"
+        , data: {
+           message: "Hello Vue.js!"
+        }, computed: { //데이터 속성을 자동으로 계산해 주는 속성 
+            reversedMessage: function(){ // {{reversedMessage}}에 표현되기 전에 연산을 수행하는 함수 
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+</script>

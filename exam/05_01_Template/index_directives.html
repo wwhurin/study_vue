@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue Teamplate - Directives</title>
+    </head>
+
+    <body>
+        <div id="app">
+            <!--
+                v-if : 지정한 값에 따라 true면 표시, false면 표시 안함 (아예 태그 안보임)
+                v-for : 뷰 데이터 개수만큼 해당 HTML 반복 출력
+                v-bind : 기본 속성과 뷰 데이터 속성 연결해줌
+                v-show : v-if와 비슷하나 display:none 형태
+                v-on : 이벤트 감지
+                v-model : 폼에서 사용되는 속성. 폼에 입력한 값을 뷰 인스턴스의 데이터와 동기화함. 
+                        <input>, <select>, <textarea> 태그에만 사용 가능
+            -->
+            <a v-if="flag">두잇 Vue.js</a>
+            <ul>
+                <li v-for="system in systems">{{ system }}</li>
+            </ul>
+            <p v-show="flag">두잇 Vue.js</p>
+            <h5 v-bind:id="uid">뷰 입문서</h5>
+            <button v-on:click="popupAlert">경고창 버튼</button>
+        </div>
+    </body>
+</html>
+
+<script src = "https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app"
+        , data: {
+            flag: true
+            , systems: ["android", "ios", "window"]
+            , uid: 10
+        }, methods: {
+            popupAlert: function(){
+                return alert("경고 창 표시");
+            }
+        }
+    });
+</script>
