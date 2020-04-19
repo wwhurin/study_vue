@@ -12,9 +12,17 @@ export default {
             newTodoItem: ''
         }
     }, methods: {
-        addTodo(){
+        addTodo() {
             console.log(this.newTodoItem);
-            localStorage.setItem(this.newTodoItem, this.newTodoItem);
+
+            if(this.newTodoItem !== ""){
+                var value = this.newTodoItem && this.newTodoItem.trim();
+                localStorage.setItem(this.newTodoItem, this.newTodoItem);
+                this.clearInput();
+            }
+           
+        }, clearInput() {
+            this.newTodoItem = "";
         }
     }
 }
