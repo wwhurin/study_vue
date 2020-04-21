@@ -9,7 +9,7 @@ export default {
     methods: {
         clearTodo() {
             console.log("clear All Todo");
-            localStorage.clear();
+            this.$emit("removeAll");
         }
     }
 }
