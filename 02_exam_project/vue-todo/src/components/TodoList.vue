@@ -5,7 +5,7 @@
                  v-for을 사용할 때, key 값이 요구
                  v-bind:key 추가 (예제에는 나와있지 않음!)
              -->
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="(todoItem, index)" class="shadow">
+            <li v-for="(todoItem, index) in propsdata" v-bind:key="(todoItem, index)" class="shadow">
                 <i class="checkBtn fas fa-check" aria-hidden="true"></i>
                 {{ todoItem }}
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
@@ -18,17 +18,8 @@
 
 <script>
 export default {
-  data() {
-      return {
-          todoItems: []
-      }
-  }, created() {
-      if(localStorage.length > 0){
-          for(var i=0; i<localStorage.length; i++){
-              this.todoItems.push(localStorage.key(i));
-          }
-      }
-  }, methods: {
+  props: ["propsdata"]
+  , methods: {
       removeTodo(todoItem, index) {
           console.log(todoItem, index);
           localStorage.removeItem(todoItem);

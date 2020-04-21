@@ -19,7 +19,8 @@ export default {
 
             if(this.newTodoItem !== ""){
                 var value = this.newTodoItem && this.newTodoItem.trim();
-                localStorage.setItem(this.newTodoItem, this.newTodoItem);
+                this.$emit("addTodo", value);
+                //localStorage.setItem(this.newTodoItem, this.newTodoItem);
                 this.clearInput();
             }
            
