@@ -1,7 +1,8 @@
 <template>
     <section>
-        <ul>
+        <transition-group name="list" tag="ul">
             <!--
+                transition-group : 목록에 애니메이션 추가할 때 사용! 
                  v-for을 사용할 때, key 값이 요구
                  v-bind:key 추가 (예제에는 나와있지 않음!)
              -->
@@ -12,7 +13,7 @@
                     <i class="far fa-trash-alt" aria-hidden="true"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </section>
 </template>
 
@@ -57,5 +58,14 @@ li {
 .removeBtn {
     margin-left: auto;
     color: #de4343;
+}
+
+.list-enter-active, .list-leave-active {
+    transition: all 1s;
+}
+
+.list-enter, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 </style>
